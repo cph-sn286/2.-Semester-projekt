@@ -14,7 +14,7 @@
 
     <jsp:body>
 
-        <div id="body" class="container" style="min-height: 20vh;">
+        <div id="body" class="img-fluid" style="max-width: 200px">
             <img src="${pageContext.request.contextPath}/images/fog-logo1.svg" class="img-fluid mb-4"/>
         </div>
 
