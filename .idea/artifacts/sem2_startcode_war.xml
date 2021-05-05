@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="sem2-startcode:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>sem2-startcode</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="sem2-startcode-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="sem2-startcode:war exploded" />
+    </root>
+  </artifact>
+</component>

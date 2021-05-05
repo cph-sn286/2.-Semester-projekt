@@ -1,0 +1,9 @@
+/*
+    CSS styles for the whole website
+    The file is included in the genericpage.tag template
+ */
+
+#topmenu_login_dialogue
+{
+    font-size: smaller;
+}
