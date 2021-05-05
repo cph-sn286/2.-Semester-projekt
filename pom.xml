@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dat</groupId>
-    <artifactId>sem2-startcode</artifactId>
+    <artifactId>fog</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>sem2-startcode</name>
+    <name>fog</name>
 
 
     <properties>
