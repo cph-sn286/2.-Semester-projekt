@@ -2,6 +2,7 @@ package business.persistence;
 
 import business.entities.Carport;
 import business.entities.Materials;
+import business.entities.Sizes;
 import business.entities.User;
 import business.exceptions.UserException;
 
@@ -85,15 +86,6 @@ public class MaterialsMapper {
                     throw new UserException(ex.getMessage());
                 }
             }
-            while (rowaAffected >= 1) {
-                try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                    ps.setInt(1, material_id);
-                    rowaAffected += ps.executeUpdate();
-                    break;
-                } catch (SQLException ex) {
-                    throw new UserException(ex.getMessage());
-                }
-            }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -156,6 +148,91 @@ public class MaterialsMapper {
 
         return materials;
     }
+
+    public int deleteSizes(int sizes_id) throws UserException {
+        int rowaAffected = 0;
+        try (Connection connection = database.connect()) {
+            String sql = "DELETE FROM sizes " +
+                    "WHERE sizes_id = ?";
+
+            while (rowaAffected == 0) {
+                try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                    ps.setInt(1, sizes_id);
+                    rowaAffected = ps.executeUpdate();
+
+                    if (rowaAffected == 0) {
+                        rowaAffected = 1;
+                    }
+                } catch (SQLException ex) {
+                    throw new UserException(ex.getMessage());
+                }
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return rowaAffected;
+    }
+
+    public Sizes insertSizes(Sizes sizes) throws UserException {
+        boolean result = false;
+        int newId = 0;
+        String sql = "insert into sizes (sizes_id, height, length, width) values (?,?,?,?)";
+        try (Connection connection = database.connect()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1, sizes.getSizes_id());
+                ps.setDouble(2, sizes.getHeigth());
+                ps.setDouble(3, sizes.getLength());
+                ps.setDouble(4, sizes.getWidth());
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1) {
+                    result = true;
+                }
+                ResultSet idResultset = ps.getGeneratedKeys();
+                if (idResultset.next()) {
+                    newId = idResultset.getInt(1);
+                    sizes.setSizes_id(newId);
+                } else {
+                    sizes = null;
+                }
+            } catch (SQLException ex) {
+
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("connection to database could not be established");
+        }
+
+
+        return sizes;
+    }
+
+    public Sizes getSizesById(int sizes_id) throws UserException {
+        try (Connection connection = database.connect()) {
+            String sql = "SELECT * FROM sizes WHERE sizes_id = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setInt(1, sizes_id);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+
+                    double height = rs.getDouble("heigth");
+                    double length = rs.getDouble("length");
+                    double width = rs.getDouble("width");
+                    return new Sizes(sizes_id, height, length, width);
+                }
+                throw new UserException("Størrelsen findes ikke for sizes_id = " + sizes_id);
+
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
+    }
+
 
 
 
