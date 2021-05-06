@@ -64,6 +64,18 @@ public class OrderMapperTest {
         assertEquals( original.getOrder_id(), retrived.getOrder_id()  );
     }
 
+    @Test
+    public void testUpdateOrderStatus() throws UserException {
+        Order original = orderMapper.getOrderById(1);
+        orderMapper.updateOrderStatus(original.getOrder_id(), 3);
+        Order retrived = orderMapper.getOrderById(1);
+
+        assertEquals(3,retrived.getStatus());
+
+
+
+
+    }
 
 
 

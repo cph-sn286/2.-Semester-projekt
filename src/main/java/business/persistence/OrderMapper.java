@@ -155,7 +155,7 @@ public class OrderMapper {
     public boolean updateOrderStatus(int orderId, int newStatus) throws UserException {
         Boolean result = false;
 
-        String sql = "UPDATE orders SET fogdb.orders.status = ? WHERE order_id = ?";
+        String sql = "UPDATE orders SET orders.status = ? WHERE order_id = ?";
         try (Connection connection = database.connect()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
