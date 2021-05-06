@@ -127,7 +127,7 @@ public class OrderMapper {
 
         try (Connection connection = database.connect()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(2, userId);
+                ps.setInt(1, userId);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     int order_id = rs.getInt("order_id");

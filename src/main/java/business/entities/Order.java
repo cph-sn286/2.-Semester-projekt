@@ -4,24 +4,24 @@ import java.util.Date;
 
 public class Order {
     private int order_id;
-    private int carport_id;
     private int user_id;
+    private int carport_id;
     private double price;
     private String date;
     private int status;
 
-    public Order(int order_id, int carport_id, int user_id, double price, String date, int status) {
+    public Order(int order_id, int user_id, int carport_id, double price, String date, int status) {
         this.order_id = order_id;
-        this.carport_id = carport_id;
         this.user_id = user_id;
+        this.carport_id = carport_id;
         this.price = price;
         this.date = date;
         this.status = status;
     }
 
-    public Order(int carport_id, int user_id, double price, String date, int status) {
-        this.carport_id = carport_id;
+    public Order( int user_id, int carport_id, double price, String date, int status) {
         this.user_id = user_id;
+        this.carport_id = carport_id;
         this.price = price;
         this.date = date;
         this.status = status;
