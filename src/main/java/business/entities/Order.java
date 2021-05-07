@@ -19,11 +19,10 @@ public class Order {
         this.status = status;
     }
 
-    public Order( int user_id, int carport_id, double price, String date, int status) {
+    public Order( int user_id, int carport_id, double price, int status) {
         this.user_id = user_id;
         this.carport_id = carport_id;
         this.price = price;
-        this.date = date;
         this.status = status;
     }
 

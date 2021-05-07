@@ -26,13 +26,15 @@
             </div>
 
 
+            <form method="post"action="confirmationpage">
+
             <label for="bredde"> Vælg en bredde </label>
             <select name="bredde" id="bredde">
-                <option value="240 cm">240cm</option>
-                <option value="270 cm">270cm</option>
-                <option value="300 cm">300cm</option>
-                <option value="360 cm">360cm</option>
-                <option value="390 cm">390cm</option>
+                <option value="240">240cm</option>
+                <option value="270">270cm</option>
+                <option value="300">300cm</option>
+                <option value="360">360cm</option>
+                <option value="390">390cm</option>
             </select>
 
             <br>
@@ -40,11 +42,11 @@
 
             <label for="længde"> Vælg en længde </label>
             <select name="længde" id="længde">
-                <option value="240 cm">240cm</option>
-                <option value="270 cm">270cm</option>
-                <option value="300 cm">300cm</option>
-                <option value="360 cm">360cm</option>
-                <option value="390 cm">390cm</option>
+                <option value="240">240cm</option>
+                <option value="270">270cm</option>
+                <option value="300">300cm</option>
+                <option value="360">360cm</option>
+                <option value="390">390cm</option>
             </select>
 
             <br>
@@ -55,7 +57,10 @@
 
             <br>
 
+
             <button type="submit">Send forespørgsel</button>
+
+            </form>
 
             <c:if test="${sessionScope.role == 'employee' }">
                 <p style="font-size: larger">This is what you can do,

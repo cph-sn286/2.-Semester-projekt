@@ -6,8 +6,15 @@ import business.exceptions.UserException;
 import java.sql.*;
 
 public class CarportMapper {
-    // TODO carport og shed mapper i denne klasse
+
     private Database database;
+
+    public CarportMapper(Database database) {
+
+        this.database = database;
+
+    }
+
 
     public Carport getCarportsById(int carport_Id) throws UserException {
         try (Connection connection = database.connect()) {
