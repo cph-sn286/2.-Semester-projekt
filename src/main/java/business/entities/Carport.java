@@ -25,6 +25,13 @@ public class Carport {
         this.sum = sum;
     }
 
+    public Carport(double length, double width, String rooftype, double sum) {
+        this.length = length;
+        this.width = width;
+        this.rooftype = rooftype;
+        this.sum = sum;
+    }
+
     public int getCarport_id() {
         return carport_id;
     }

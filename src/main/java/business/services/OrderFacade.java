@@ -7,6 +7,8 @@ import business.persistence.Database;
 import business.persistence.OrderMapper;
 import business.persistence.UserMapper;
 
+import java.util.List;
+
 public class OrderFacade
 {
     OrderMapper orderMapper;
@@ -19,6 +21,9 @@ public class OrderFacade
     public void insertOrder(Order order) throws UserException {
         orderMapper.insertOrder(order);
 
+    }
+    public List<Order> getAllOrders()throws UserException{
+        return orderMapper.getAllOrders();
     }
 
 }

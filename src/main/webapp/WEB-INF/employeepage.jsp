@@ -12,5 +12,8 @@
         <h1>Hello ${sessionScope.email} </h1>
         You are now logged in as a EMPLOYEE of our wonderful site.
 
+
+        <p><a href="${pageContext.request.contextPath}/fc/managerequestpage">Gå til forespørgelser</a> </p>
+
     </jsp:body>
 </t:genericpage>
