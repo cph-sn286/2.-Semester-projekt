@@ -22,8 +22,40 @@
             <h2>Byg carport siden</h2>
 
             <div style="margin-top: 3em;margin-bottom: 3em;">
-                Velkommen til Fog's byg selv carport side
+                Velkommen til Fog's byg selv carport side, sammensæt din carport her:
             </div>
+
+
+            <label for="bredde"> Vælg en bredde </label>
+            <select name="bredde" id="bredde">
+                <option value="240 cm">240cm</option>
+                <option value="270 cm">270cm</option>
+                <option value="300 cm">300cm</option>
+                <option value="360 cm">360cm</option>
+                <option value="390 cm">390cm</option>
+            </select>
+
+            <br>
+
+
+            <label for="længde"> Vælg en længde </label>
+            <select name="længde" id="længde">
+                <option value="240 cm">240cm</option>
+                <option value="270 cm">270cm</option>
+                <option value="300 cm">300cm</option>
+                <option value="360 cm">360cm</option>
+                <option value="390 cm">390cm</option>
+            </select>
+
+            <br>
+
+
+            <input type="checkbox"id="redskabsskur"name="redskabsskur"value="redskabsskur">
+            <label for="redskabsskur"> Vil du tilvælge et redskabsskur?</label>
+
+            <br>
+
+            <button type="submit">Send forespørgsel</button>
 
             <c:if test="${sessionScope.role == 'employee' }">
                 <p style="font-size: larger">This is what you can do,
