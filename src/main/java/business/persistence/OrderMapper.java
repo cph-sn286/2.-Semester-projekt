@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderMapper {
-    // todo order + status mapper i denne klasse
 
     private Database database;
 
@@ -204,5 +203,37 @@ public class OrderMapper {
         return status;
     }
 
+    public List<Order> getAllOrdersRequest() throws UserException {
+
+        List<Order> orderList = new ArrayList<>();
+
+        String sql = "select * from fogdb.orders WHERE status = 1 ";
+
+        try (Connection connection = database.connect()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int order_id = rs.getInt("order_id");
+                    int user_id = rs.getInt("user_id");
+                    int carport_id = rs.getInt("carport_id");
+                    double price = rs.getDouble("price");
+                    String date = rs.getString("date");
+                    int status = rs.getInt("status");
+
+                    orderList.add(new Order(order_id, user_id, carport_id, price, date, status));
+
+                }
+
+            } catch (SQLException ex) {
+
+                throw new UserException(ex.getMessage());
+            }
+
+        } catch (SQLException ex) {
+            throw new UserException("connection to database could not be established");
+        }
+        return orderList;
+
+    }
 
 }

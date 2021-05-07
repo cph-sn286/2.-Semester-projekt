@@ -18,7 +18,8 @@ public class ManageRequestCommand extends CommandProtectedPage{
     public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException {
         OrderFacade orderFacade = new OrderFacade(database);
         HttpSession session = request.getSession();
-        List<Order> orderList = orderFacade.getAllOrders();
+        List<Order> orderList = orderFacade.getAllOrdersRequest();
+        session.setAttribute("orderlist",orderList);
 
 
 

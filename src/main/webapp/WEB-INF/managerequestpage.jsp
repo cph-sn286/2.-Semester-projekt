@@ -23,9 +23,9 @@
                 <th>status</th>
                 </thead>
 
-                    <c:forEach var="userItem" items="${applicationScope.userList}">
+                    <c:forEach var="order" items="${applicationScope.orderlist}">
                 <tr>
-                    <td>${userItem.id}</td>
+                    <td>${order.order_id}</td>
                     <td>${userItem.email}</td>
                     <td>${userItem.password}</td>
                     <td>${userItem.role}</td>
@@ -35,6 +35,7 @@
                                 value="${userItem.id}">slet kunde!
                         </button>
                     </td>
+                </c:forEach>
         </form>
 
 

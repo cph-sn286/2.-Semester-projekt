@@ -25,5 +25,9 @@ public class OrderFacade
     public List<Order> getAllOrders()throws UserException{
         return orderMapper.getAllOrders();
     }
+    public List<Order> getAllOrdersRequest()throws UserException{
+        return orderMapper.getAllOrdersRequest();
+    }
+
 
 }
