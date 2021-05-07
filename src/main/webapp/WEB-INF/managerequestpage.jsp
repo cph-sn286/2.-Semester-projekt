@@ -26,10 +26,11 @@
                     <c:forEach var="order" items="${applicationScope.orderlist}">
                 <tr>
                     <td>${order.order_id}</td>
-                    <td>${userItem.email}</td>
-                    <td>${userItem.password}</td>
-                    <td>${userItem.role}</td>
-                    <td>${userItem.saldo}</td>
+                    <td>${order.user_id}</td>
+                    <td>${order.carport_id}</td>
+                    <td>${order.price}</td>
+                    <td>${order.date}</td>
+                    <td>${order.status}</td>
                     <td>
                         <button class="btn btn-danger " type="submit" name="delete"
                                 value="${userItem.id}">slet kunde!
