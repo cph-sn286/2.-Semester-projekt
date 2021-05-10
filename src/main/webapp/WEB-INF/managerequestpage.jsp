@@ -23,14 +23,14 @@
                 <th>status</th>
                 </thead>
 
-                    <c:forEach var="order" items="${applicationScope.orderlist}">
+                    <c:forEach var="orderlist" items="${applicationScope.orderlist}">
                 <tr>
-                    <td>${order.order_id}</td>
-                    <td>${order.user_id}</td>
-                    <td>${order.carport_id}</td>
-                    <td>${order.price}</td>
-                    <td>${order.date}</td>
-                    <td>${order.status}</td>
+                    <td>${orderlist.order_id}</td>
+                    <td>${orderlist.user_id}</td>
+                    <td>${orderlist.carport_id}</td>
+                    <td>${orderlist.price}</td>
+                    <td>${orderlist.date}</td>
+                    <td>${orderlist.status}</td>
                     <td>
                         <button class="btn btn-danger " type="submit" name="delete"
                                 value="${userItem.id}">slet kunde!
