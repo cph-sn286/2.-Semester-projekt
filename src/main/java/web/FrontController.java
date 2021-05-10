@@ -1,11 +1,14 @@
 package web;
 
+import business.entities.Materials;
 import business.exceptions.UserException;
 import business.persistence.Database;
+import business.services.MaterialFacade;
 import web.commands.*;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -39,6 +42,13 @@ public class FrontController extends HttpServlet
         }
 
         // Initialize whatever global datastructures needed here:
+        MaterialFacade materialFacade = new MaterialFacade(database);
+        try {
+            List<Materials>materialPriceList = materialFacade.getAllMaterials();
+            getServletContext().setAttribute("materialPriceList", materialPriceList);
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
 
 
     }

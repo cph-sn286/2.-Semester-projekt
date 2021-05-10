@@ -74,18 +74,18 @@ public class MaterialsMapper {
     }
 
     public int deleteMaterial(int material_id) throws UserException {
-        int rowaAffected = 0;
+        int rowsAffected = 0;
         try (Connection connection = database.connect()) {
             String sql = "DELETE FROM materials " +
                     "WHERE materials_id = ?";
 
-            while (rowaAffected == 0) {
+            while (rowsAffected == 0) {
                 try (PreparedStatement ps = connection.prepareStatement(sql)) {
                     ps.setInt(1, material_id);
-                    rowaAffected = ps.executeUpdate();
+                    rowsAffected = ps.executeUpdate();
 
-                    if (rowaAffected == 0) {
-                        rowaAffected = 1;
+                    if (rowsAffected == 0) {
+                        rowsAffected = 1;
                     }
                 } catch (SQLException ex) {
                     throw new UserException(ex.getMessage());
@@ -95,7 +95,7 @@ public class MaterialsMapper {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return rowaAffected;
+        return rowsAffected;
     }
 
     public int updateMaterial(Double price, String description, int materials_id) throws UserException {

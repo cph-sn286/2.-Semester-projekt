@@ -10,28 +10,28 @@
     </jsp:attribute>
     <jsp:body>
         <h1>Hello ${sessionScope.email} </h1>
-        Request siden
+        Materiale siden
 
         <form>
             <table class="table">
                 <thead>
-                <th>material_id</th>
+                <th>materials_id</th>
                 <th>name</th>
                 <th>sizes_id</th>
                 <th>description</th>
                 <th>price</th>
                 </thead>
 
-                    <c:forEach var="materials" items="${applicationScope.orderList}">
+                    <c:forEach var="materials" items="${applicationScope.materialPriceList}">
                 <tr>
-                    <td>${materials.material_id}</td>
+                    <td>${materials.materials_id}</td>
                     <td>${materials.name}</td>
                     <td>${materials.sizes_id}</td>
                     <td>${materials.description}</td>
-                    <td>${materials.price}</td>
+                    <td>${materials.price},-</td>
                     <td>
-                        <button class="btn btn-secondary " type="submit" name="delete"
-                                value="${userItem.id}">rediger materiale
+                        <button class="btn btn-secondary " type="submit" name="materials_id"
+                                value="${materials.materials_id}">rediger materiale
                         </button>
                     </td>
                 </c:forEach>
