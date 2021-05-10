@@ -34,5 +34,12 @@ public class MaterialFacade {
         return materialsMapper.getMaterialById(material_id);
     }
 
+    public int updatePrice(String materials_id, String price) {
+        return updatePrice(materials_id,price);
+    }
+
+    public String updateDescription(String description) {
+
+    }
 }
 
