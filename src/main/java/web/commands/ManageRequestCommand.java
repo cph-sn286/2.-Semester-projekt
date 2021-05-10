@@ -19,7 +19,10 @@ public class ManageRequestCommand extends CommandProtectedPage{
         OrderFacade orderFacade = new OrderFacade(database);
         HttpSession session = request.getSession();
         List<Order> orderList = orderFacade.getAllOrdersRequest();
-        session.setAttribute("orderlist",orderList);
+        session.getServletContext().setAttribute("orderList",orderList);
+      //  session.setAttribute("orderlist",orderList);
+
+
 
 
 
