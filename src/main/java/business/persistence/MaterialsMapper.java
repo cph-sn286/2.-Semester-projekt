@@ -14,6 +14,11 @@ public class MaterialsMapper {
 
     Database database;
 
+    public MaterialsMapper(Database database) {
+
+        this.database = database;
+    }
+
     public Materials getMaterialById(int materials_id) throws UserException {
         try (Connection connection = database.connect()) {
             String sql = "SELECT * FROM materials WHERE materials_id = ?";

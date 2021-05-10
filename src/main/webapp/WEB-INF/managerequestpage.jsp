@@ -32,8 +32,14 @@
                     <td>${order.date}</td>
                     <td>${order.status}</td>
                     <td>
+                        <button class="btn btn-dark " type="submit" name="delete"
+                                value="${userItem.id}">check ordre
+                        </button>
+                        <button class="btn btn-success " type="submit" name="delete"
+                                value="${userItem.id}">accepter ordre
+                        </button>
                         <button class="btn btn-danger " type="submit" name="delete"
-                                value="${userItem.id}">slet kunde!
+                                value="${userItem.id}">slet ordre
                         </button>
                     </td>
                 </c:forEach>

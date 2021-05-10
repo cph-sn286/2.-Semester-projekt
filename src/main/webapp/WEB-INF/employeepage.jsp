@@ -14,6 +14,7 @@
 
 
         <p><a href="${pageContext.request.contextPath}/fc/managerequestpage">Gå til forespørgelser</a> </p>
+        <p><a href="${pageContext.request.contextPath}/fc/managematerialpage">Gå til materialer</a> </p>
 
     </jsp:body>
 </t:genericpage>
