@@ -36,8 +36,7 @@ public class CarportCalc {
         return billOfMaterials;
     }
 
-
-    public Result calcPost(double length, double width) {
+    protected Result calcPost(double length, double width) {
 
         int postAmount = 4;
 
@@ -62,7 +61,7 @@ public class CarportCalc {
         return result;
     }
 
-    public Result calcRaft(double length, double width) {
+    protected Result calcRaft(double length, double width) {
 
         // spær er 600cm, 55cm. mellemrum mellem spær
 
@@ -172,6 +171,8 @@ public class CarportCalc {
 
         return result;
     }
+
+
 
 
 }
