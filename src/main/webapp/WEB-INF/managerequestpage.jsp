@@ -12,38 +12,50 @@
         <h1>Hello ${sessionScope.email} </h1>
         Request siden
 
-        <form>
-            <table class="table">
-                <thead>
-                <th>order_id</th>
-                <th>user_id</th>
-                <th>carport_id</th>
-                <th>pris</th>
-                <th>dato</th>
-                <th>status</th>
-                </thead>
 
-                    <c:forEach var="order" items="${applicationScope.orderList}">
-                <tr>
-                    <td>${order.order_id}</td>
-                    <td>${order.user_id}</td>
-                    <td>${order.carport_id}</td>
-                    <td>${order.price}</td>
-                    <td>${order.date}</td>
-                    <td>${order.status}</td>
-                    <td>
-                        <button class="btn btn-dark " type="submit" name="delete"
-                                value="${userItem.id}">check ordre
+        <table class="table">
+        <thead>
+        <th>order_id</th>
+        <th>user_id</th>
+        <th>carport_id</th>
+        <th>pris</th>
+        <th>dato</th>
+        <th>status</th>
+        </thead>
+
+        <c:forEach var="order" items="${applicationScope.orderList}">
+            <tr>
+            <td>${order.order_id}</td>
+            <td>${order.user_id}</td>
+            <td>${order.carport_id}</td>
+            <td>${order.price}</td>
+            <td>${order.date}</td>
+            <td>${order.status}</td>
+            <td>
+                <div>
+                    <form action="${pageContext.request.contextPath}/fc/checkorderpage">
+
+                        <button class="btn btn-dark " type="submit" name="order_id"
+                                value="${order.order_id}">check ordre
                         </button>
-                        <button class="btn btn-success " type="submit" name="delete"
-                                value="${userItem.id}">accepter ordre
+                    </form>
+
+                    <form action="">
+
+                        <button class="btn btn-success " type="submit" name="accept"
+                                value="${order.order_id}">accepter ordre
                         </button>
+                    </form>
+
+                    <form action="">
                         <button class="btn btn-danger " type="submit" name="delete"
-                                value="${userItem.id}">slet ordre
+                                value="${order.order_id}">slet ordre
                         </button>
-                    </td>
-                </c:forEach>
-        </form>
+                    </form>
+
+                </div>
+            </td>
+        </c:forEach>
 
 
     </jsp:body>

@@ -22,7 +22,7 @@ public class CarportCalc {
 
         name = "raft";
 
-        carportItems = new CarportItems(name,calcRaft(length,width).getLength(),calcPost(length,width).getAmount());
+        carportItems = new CarportItems(name,calcRaft(length,width).getLength(),calcRaft(length,width).getAmount());
         billOfMaterials.addToBillOfMaterials(carportItems);
 
         // ------
@@ -103,7 +103,7 @@ public class CarportCalc {
 
         }
 
-        if (length == 240) {
+        if (length <= 240) {
 
             return new Result(600, rafterAmount);
 

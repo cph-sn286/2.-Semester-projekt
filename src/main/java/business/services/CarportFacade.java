@@ -22,4 +22,8 @@ public class CarportFacade
         return carport;
     }
 
+    public Carport getCarportById(int carport_id) throws UserException {
+        return carportMapper.getCarportsById(carport_id);
+    }
+
 }
