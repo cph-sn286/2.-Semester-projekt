@@ -7,21 +7,27 @@ public class BillOfMaterials {
 
 
 
-    private List<Materials> billOfMaterialsItemList = new ArrayList<>();
+    private List<CarportItems> billOfMaterialsItemList = new ArrayList<>();
 
     public BillOfMaterials(){
 
 
     }
 
-    public List<Materials> getBillOfMaterialsItemList(){
+    public List<CarportItems> getBillOfMaterialsItemList(){
 
         return billOfMaterialsItemList;
 
     }
 
-    public  void addToBillOfMaterials(Materials materials){
-        billOfMaterialsItemList.add(materials);
+    public  void addToBillOfMaterials(CarportItems carportItems){
+        billOfMaterialsItemList.add(carportItems);
+
+    }
+
+    public void removeFromBillOfMaterials(int carportItemsIndex){
+
+        billOfMaterialsItemList.remove(carportItemsIndex);
 
     }
 }
