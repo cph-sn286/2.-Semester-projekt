@@ -2,14 +2,11 @@ package business.services;
 
 import business.entities.Result;
 
-public class carportCalc {
+public class CarportCalc {
 
 
-    protected Result calcPost(double length, double width) {
+    public Result calcPost(double length, double width) {
         Result result = new Result();
-
-        length = 600;
-        width = 780;
 
         int postAmount = 4;
 
@@ -17,14 +14,12 @@ public class carportCalc {
 
             while (length > 300) {
 
-                length = -300;
-                postAmount = +2;
-
+                length = length - 300;
+                postAmount = postAmount + 2;
 
             }
 
             result = new Result(300, postAmount);
-
 
         }
 
@@ -33,7 +28,6 @@ public class carportCalc {
             result = new Result(300, postAmount);
             return result;
         }
-
 
         return result;
     }

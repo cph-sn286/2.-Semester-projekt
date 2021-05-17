@@ -38,8 +38,6 @@ public class MaterialFacade {
         return updatePrice(materials_id,price);
     }
 
-    public String updateDescription(String description) {
 
-    }
 }
 
