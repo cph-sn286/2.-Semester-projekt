@@ -16,6 +16,7 @@ public class UserMapper
 
     public void createUser(User user) throws UserException
     {
+
         try (Connection connection = database.connect())
         {
             String sql = "INSERT INTO user (email, password, role) VALUES (?, ?, ?)";
