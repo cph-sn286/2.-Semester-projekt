@@ -35,4 +35,13 @@ public class CarportItems {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    @Override
+    public String toString() {
+        return "CarportItems{" +
+                "name='" + name + '\'' +
+                ", length=" + length +
+                ", amount=" + amount +
+                '}';
+    }
 }

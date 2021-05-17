@@ -1,5 +1,6 @@
 package business.services;
 
+import business.entities.BillOfMaterials;
 import business.entities.Carport;
 import business.entities.Result;
 import org.junit.jupiter.api.Test;
@@ -92,6 +93,18 @@ class CarportCalcTest {
         Result result = carportCalc.calcBeam(240,780);
 
         assertEquals(6,result.getAmount());
+
+
+    }
+
+    @Test
+
+    void calcCarport(){
+        BillOfMaterials billOfMaterials = carportCalc.calcCarport(240,780);
+
+        System.out.println(billOfMaterials.getBillOfMaterialsItemList().toString());
+        assertEquals(3,billOfMaterials.getBillOfMaterialsItemList().size());
+
 
 
     }

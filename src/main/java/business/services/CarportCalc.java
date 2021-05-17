@@ -1,18 +1,39 @@
 package business.services;
 
+import business.entities.BillOfMaterials;
+import business.entities.CarportItems;
 import business.entities.Result;
 
 public class CarportCalc {
+    BillOfMaterials billOfMaterials = new BillOfMaterials();
     Result result = new Result();
 
-    public void calcCarport(Double length, Double width){
+    public BillOfMaterials calcCarport(double length, double width){
+        String name;
+        CarportItems carportItems = null;
 
-        calcPost();
-        calcRaft()
-        calcBeam();
+       // ------
+        name = "post";
+
+        carportItems = new CarportItems (name,calcPost(length,width).getLength(), calcPost(length,width).getAmount());
+        billOfMaterials.addToBillOfMaterials(carportItems);
+
+        // ------
+
+        name = "raft";
+
+        carportItems = new CarportItems(name,calcRaft(length,width).getLength(),calcPost(length,width).getAmount());
+        billOfMaterials.addToBillOfMaterials(carportItems);
+
+        // ------
+
+        name = "beam";
+
+        carportItems = new CarportItems(name,calcBeam(length,width).getLength(),calcBeam(length,width).getAmount());
+        billOfMaterials.addToBillOfMaterials(carportItems);
 
 
-
+        return billOfMaterials;
     }
 
 

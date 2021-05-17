@@ -30,4 +30,11 @@ public class BillOfMaterials {
         billOfMaterialsItemList.remove(carportItemsIndex);
 
     }
+
+    @Override
+    public String toString() {
+        return "BillOfMaterials{" +
+                "billOfMaterialsItemList=" + billOfMaterialsItemList +
+                '}';
+    }
 }
