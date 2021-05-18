@@ -26,6 +26,8 @@
             </div>
 
 
+                ${requestScope.svgdrawing}
+
 
 
 
