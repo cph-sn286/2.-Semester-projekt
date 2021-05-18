@@ -15,21 +15,21 @@ public class CarportCalc {
        // ------
         name = "post";
 
-        carportItems = new CarportItems (name,calcPost(length,width).getLength(), calcPost(length,width).getAmount());
+        carportItems = new CarportItems (name,calcPost(length,width).getLength(), calcPost(length,width).getAmount(),calcPost(length,width).getPrice());
         billOfMaterials.addToBillOfMaterials(carportItems);
 
         // ------
 
         name = "raft";
 
-        carportItems = new CarportItems(name,calcRaft(length,width).getLength(),calcRaft(length,width).getAmount());
+        carportItems = new CarportItems(name,calcRaft(length,width).getLength(),calcRaft(length,width).getAmount(),calcRaft(length, width).getPrice()  );
         billOfMaterials.addToBillOfMaterials(carportItems);
 
         // ------
 
         name = "beam";
 
-        carportItems = new CarportItems(name,calcBeam(length,width).getLength(),calcBeam(length,width).getAmount());
+        carportItems = new CarportItems(name,calcBeam(length,width).getLength(),calcBeam(length,width).getAmount(),calcRaft(length, width).getPrice());
         billOfMaterials.addToBillOfMaterials(carportItems);
 
 
@@ -37,6 +37,8 @@ public class CarportCalc {
     }
 
     protected Result calcPost(double length, double width) {
+
+        double price = 105;
 
         int postAmount = 4;
 
@@ -49,13 +51,14 @@ public class CarportCalc {
 
             }
 
-            result = new Result(300, postAmount);
+            price = postAmount * price;
+            result = new Result(300, postAmount,price);
 
         }
 
         if (length < 300 || length == 300) {
-
-            return new Result(300, postAmount);
+            price = postAmount * price;
+            return new Result(300, postAmount,price);
         }
 
         return result;
@@ -63,6 +66,7 @@ public class CarportCalc {
 
     protected Result calcRaft(double length, double width) {
 
+        double price = 509;
         // spær er 600cm, 55cm. mellemrum mellem spær
 
         int rafterAmount = calcRaftLength(length).getAmount();
@@ -71,13 +75,15 @@ public class CarportCalc {
 
             rafterAmount = rafterAmount * 2;
 
-            return new Result(600, rafterAmount);
+            price = rafterAmount * price;
+            return new Result(600, rafterAmount, price);
 
         }
 
         if (width <= 600) {
 
-            return new Result(600, rafterAmount);
+            price = rafterAmount * price;
+            return new Result(600, rafterAmount, price);
 
         }
 
@@ -116,10 +122,13 @@ public class CarportCalc {
 
     public Result calcBeam(double length, double width) {
 
+        double price = 600;
+
         int beamAmount;
         beamAmount = calcBeamLength(length).getAmount() + calcBeamWidth(width).getAmount();
+        price = beamAmount * price;
 
-        return new Result(500, beamAmount);
+        return new Result(500, beamAmount, price);
     }
 
     private Result calcBeamLength(double length) {

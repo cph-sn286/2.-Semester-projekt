@@ -31,6 +31,19 @@ public class BillOfMaterials {
 
     }
 
+
+    public double totalPrice(){
+        double price = 0;
+
+        for (CarportItems carportitem : billOfMaterialsItemList) {
+
+            price = price + carportitem.getPrice();
+
+        }
+
+        return price;
+    }
+
     @Override
     public String toString() {
         return "BillOfMaterials{" +

@@ -29,6 +29,7 @@ public class CheckOrderCommand extends CommandProtectedPage {
         Carport carport = null;
         int order_id;
         int carport_id;
+        double totalPrice;
 
 
         HttpSession session = request.getSession();
@@ -49,6 +50,10 @@ public class CheckOrderCommand extends CommandProtectedPage {
         BillOfMaterials billOfMaterials = carportCalc.calcCarport(carport.getLength(), carport.getWidth());
 
         session.getServletContext().setAttribute("billOfMaterials",billOfMaterials);
+
+        totalPrice = billOfMaterials.totalPrice();
+
+        session.getServletContext().setAttribute("totalPrice",totalPrice);
 
 
         return pageToShow;
