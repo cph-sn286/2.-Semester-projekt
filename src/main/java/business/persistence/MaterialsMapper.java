@@ -19,7 +19,7 @@ public class MaterialsMapper {
         this.database = database;
     }
 
-    public Materials getMaterialById(int materials_id) throws UserException {
+ /*   public Materials getMaterialById(int materials_id) throws UserException {
         try (Connection connection = database.connect()) {
             String sql = "SELECT * FROM materials WHERE materials_id = ?";
 
@@ -43,13 +43,13 @@ public class MaterialsMapper {
         } catch (SQLException ex) {
             throw new UserException("Connection to database could not be established");
         }
-    }
+    } */
 
     public List<Materials> getAllMaterials() throws UserException {
 
         List<Materials> materialsList = new ArrayList<>();
         try (Connection connection = database.connect()) {
-            String sql = "SELECT * FROM materials";
+            String sql = "SELECT materials.materials_id, materials.name, materials.description, materials.price,materials.sizes_id, sizes.height, sizes.length, sizes.width FROM fogdb.materials INNER JOIN fogdb.sizes on materials.sizes_id = sizes.sizes_id";
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
@@ -59,9 +59,12 @@ public class MaterialsMapper {
                     int materials_id = rs.getInt("materials_id");
                     String name = rs.getString("name");
                     int sizes_id = rs.getInt("sizes_id");
+                    double height = rs.getDouble("height");
+                    double length = rs.getDouble("length");
+                    double width = rs.getDouble("width");
                     String description = rs.getString("description");
                     double price = rs.getDouble("price");
-                    materialsList.add(new Materials(materials_id, name, sizes_id, description, price));
+                    materialsList.add(new Materials(materials_id, name, sizes_id, height,length,width, description, price));
 
                 }
                 return materialsList;
@@ -106,7 +109,7 @@ public class MaterialsMapper {
 
                 ps.setDouble(1, price);
                 ps.setString(2, description);
-                ps.setInt(3,materials_id);
+                ps.setInt(3, materials_id);
                 int rowsInserted = ps.executeUpdate();
                 return rowsInserted;
 
@@ -128,7 +131,7 @@ public class MaterialsMapper {
                 ps.setString(2, materials.getName());
                 ps.setInt(3, materials.getSizes_id());
                 ps.setString(4, materials.getDescription());
-                ps.setDouble(5,materials.getPrice());
+                ps.setDouble(5, materials.getPrice());
 
 
                 int rowsAffected = ps.executeUpdate();
@@ -237,8 +240,6 @@ public class MaterialsMapper {
             throw new UserException("Connection to database could not be established");
         }
     }
-
-
 
 
 }
