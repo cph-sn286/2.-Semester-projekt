@@ -30,9 +30,9 @@ public class MaterialFacade {
         return rowsAffected;
     }
     
-  /*  public Materials getAllMaterialsById(int material_id)throws UserException {
+    public Materials getAllMaterialsById(int material_id)throws UserException {
         return materialsMapper.getMaterialById(material_id);
-    } */
+    }
 
     public int updatePrice(String materials_id, String price) {
         return updatePrice(materials_id,price);

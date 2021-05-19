@@ -19,9 +19,9 @@ public class MaterialsMapper {
         this.database = database;
     }
 
- /*   public Materials getMaterialById(int materials_id) throws UserException {
+    public Materials getMaterialById(int materials_id) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql = "SELECT * FROM materials WHERE materials_id = ?";
+            String sql = "SELECT materials.materials_id, materials.name, materials.description, materials.price, sizes.height, sizes.length, sizes.width FROM materials INNER JOIN sizes on materials.sizes_id = sizes.sizes_id WHERE materials_id = ?";
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
@@ -31,9 +31,12 @@ public class MaterialsMapper {
 
                     String name = rs.getString("name");
                     int sizes_id = rs.getInt("sizes_id");
+                    double height = rs.getDouble("height");
+                    double length = rs.getDouble("length");
+                    double width = rs.getDouble("width");
                     String description = rs.getString("description");
                     double price = rs.getDouble("price");
-                    return new Materials(materials_id, name, sizes_id, description, price);
+                    return new Materials(materials_id, name, sizes_id, height, length, width, description, price);
                 }
                 throw new UserException("Materialet findes ikke for materiale_id = " + materials_id);
 
@@ -43,7 +46,7 @@ public class MaterialsMapper {
         } catch (SQLException ex) {
             throw new UserException("Connection to database could not be established");
         }
-    } */
+    }
 
     public List<Materials> getAllMaterials() throws UserException {
 
@@ -64,7 +67,7 @@ public class MaterialsMapper {
                     double width = rs.getDouble("width");
                     String description = rs.getString("description");
                     double price = rs.getDouble("price");
-                    materialsList.add(new Materials(materials_id, name, sizes_id, height,length,width, description, price));
+                    materialsList.add(new Materials(materials_id, name, sizes_id, height, length, width, description, price));
 
                 }
                 return materialsList;
