@@ -25,10 +25,10 @@
                 Du får svar indenfor 1-3 hverdage
             </div>
 
+          <p> Plantegning af valg carport:</p>
+
 
                 ${requestScope.svgdrawing}
-
-
 
 
 

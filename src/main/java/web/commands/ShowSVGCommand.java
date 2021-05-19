@@ -17,12 +17,14 @@ public class ShowSVGCommand extends CommandUnprotectedPage
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException
     {
-        SVG svg = new SVG(0, 0, "0 0 800 600", 100, 50 );
+       SVG svg = new SVG(0, 0, "0 0 800 600", 100, 50 );
 
         for (int x = 0; x < 14; x++)
         {
             svg.addRect(100 + 50 * x, 0, 600.0, 4.5);
-        }
+       }
+
+
         request.setAttribute("svgdrawing", svg.toString());
         return pageToShow;
     }
