@@ -2,7 +2,6 @@ package business.persistence;
 
 import business.entities.Carport;
 import business.entities.Materials;
-import business.entities.Sizes;
 import business.entities.User;
 import business.exceptions.UserException;
 
@@ -21,7 +20,7 @@ public class MaterialsMapper {
 
     public Materials getMaterialById(int materials_id) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql = "SELECT materials.materials_id, materials.name, materials.description, materials.price, sizes.height, sizes.length, sizes.width FROM materials INNER JOIN sizes on materials.sizes_id = sizes.sizes_id WHERE materials_id = ?";
+            String sql = "SELECT materials.materials_id, materials.name, materials.description, materials.price,sizes.sizes_id, sizes.height, sizes.length, sizes.width FROM materials INNER JOIN sizes on materials.sizes_id = sizes.sizes_id WHERE materials_id = ?";
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
@@ -79,7 +78,7 @@ public class MaterialsMapper {
         }
     }
 
-    public int deleteMaterial(int material_id) throws UserException {
+    public int deleteMaterial(Materials materials) throws UserException {
         int rowsAffected = 0;
         try (Connection connection = database.connect()) {
             String sql = "DELETE FROM materials " +
@@ -87,7 +86,7 @@ public class MaterialsMapper {
 
             while (rowsAffected == 0) {
                 try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                    ps.setInt(1, material_id);
+                    ps.setInt(1, materials.getMaterials_id());
                     rowsAffected = ps.executeUpdate();
 
                     if (rowsAffected == 0) {
@@ -97,6 +96,8 @@ public class MaterialsMapper {
                     throw new UserException(ex.getMessage());
                 }
             }
+
+            deleteSizes(materials.getSizes_id());
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -185,16 +186,19 @@ public class MaterialsMapper {
         return rowaAffected;
     }
 
-    public Sizes insertSizes(Sizes sizes) throws UserException {
+// TODO: overvejer om den skal stå for sig selv eller sættes sammen med insertMaterial.
+  /*  public Materials insertSizes(Materials materials) throws UserException {
+
         boolean result = false;
+
         int newId = 0;
         String sql = "insert into sizes (sizes_id, height, length, width) values (?,?,?,?)";
         try (Connection connection = database.connect()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setInt(1, sizes.getSizes_id());
-                ps.setDouble(2, sizes.getHeigth());
-                ps.setDouble(3, sizes.getLength());
-                ps.setDouble(4, sizes.getWidth());
+                ps.setInt(1, materials.getSizes_id());
+                ps.setDouble(2, materials.getHeight());
+                ps.setDouble(3, materials.getLength());
+                ps.setDouble(4, materials.getWidth());
 
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
@@ -219,30 +223,11 @@ public class MaterialsMapper {
         return sizes;
     }
 
-    public Sizes getSizesById(int sizes_id) throws UserException {
-        try (Connection connection = database.connect()) {
-            String sql = "SELECT * FROM sizes WHERE sizes_id = ?";
+*/
 
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-                ps.setInt(1, sizes_id);
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
 
-                    double height = rs.getDouble("heigth");
-                    double length = rs.getDouble("length");
-                    double width = rs.getDouble("width");
-                    return new Sizes(sizes_id, height, length, width);
-                }
-                throw new UserException("Størrelsen findes ikke for sizes_id = " + sizes_id);
 
-            } catch (SQLException ex) {
-                throw new UserException(ex.getMessage());
-            }
-        } catch (SQLException ex) {
-            throw new UserException("Connection to database could not be established");
-        }
-    }
 
 
 }
