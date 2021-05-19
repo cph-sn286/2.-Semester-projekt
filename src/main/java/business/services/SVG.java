@@ -34,10 +34,6 @@ public class SVG
         svg.append(String.format(rectTemplate, x, y, height, width));
     }
 
-    public void addLine(int x1, int y1, int x2, int y2 )
-    {
-
-    }
 
     public void addSvg(SVG innerSVG)
     {
