@@ -33,6 +33,7 @@ public abstract class Command
         commands.put("managerequestpage", new ManageRequestCommand("managerequestpage","employee"));
         commands.put("managematerialpage", new CommandProtectedPage("managematerialpage","employee"));
         commands.put("checkorderpage", new CheckOrderCommand("checkorderpage","employee"));
+        commands.put("showsvgpage", new ShowSVGCommand("showsvgpage"));
     }
 
     public static Command fromPath(
