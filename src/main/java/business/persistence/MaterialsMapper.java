@@ -2,10 +2,6 @@ package business.persistence;
 
 import business.entities.Carport;
 import business.entities.Materials;
-<<<<<<< HEAD
-
-=======
->>>>>>> 06ca048cea945ece7cf25d773b6e214095da148d
 import business.entities.User;
 import business.exceptions.UserException;
 
