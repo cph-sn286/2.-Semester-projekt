@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="sem2-startcode-1.0-SNAPSHOT.war">
+    <root id="archive" name="fog-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="bmi:war exploded" />
     </root>
   </artifact>
