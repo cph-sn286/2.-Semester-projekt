@@ -25,14 +25,14 @@ public class MaterialFacade {
         materialsMapper.updateMaterial(price, description, material_id);
     }
 
-    public int deleteMaterials(int material_id) throws UserException {
-        int rowsAffected = materialsMapper.deleteMaterial(material_id);
+    public int deleteMaterials(Materials materials) throws UserException {
+        int rowsAffected = materialsMapper.deleteMaterial(materials);
         return rowsAffected;
     }
     
-  /*  public Materials getAllMaterialsById(int material_id)throws UserException {
+    public Materials getMaterialsById(int material_id)throws UserException {
         return materialsMapper.getMaterialById(material_id);
-    } */
+    }
 
     public int updatePrice(String materials_id, String price) {
         return updatePrice(materials_id,price);

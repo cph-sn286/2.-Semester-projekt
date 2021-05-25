@@ -24,7 +24,7 @@ public class CheckOrderCommand extends CommandProtectedPage {
 
         CarportFacade carportFacade = new CarportFacade(database);
         OrderFacade orderFacade = new OrderFacade(database);
-        CarportCalc carportCalc = new CarportCalc();
+        CarportCalc carportCalc = new CarportCalc(database);
 
         Carport carport = null;
         int order_id;

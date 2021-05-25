@@ -2,13 +2,25 @@ package business.services;
 
 import business.entities.BillOfMaterials;
 import business.entities.CarportItems;
+import business.entities.Materials;
 import business.entities.Result;
+import business.exceptions.UserException;
+import business.persistence.Database;
+import business.persistence.MaterialsMapper;
+import web.FrontController;
 
 public class CarportCalc {
     BillOfMaterials billOfMaterials = new BillOfMaterials();
     Result result = new Result();
+    MaterialFacade materialFacade;
+    Materials materials = null;
 
-    public BillOfMaterials calcCarport(double length, double width){
+    public CarportCalc(Database database) {
+        materialFacade = new MaterialFacade(database);
+    }
+
+
+    public BillOfMaterials calcCarport(double length, double width) throws UserException {
         String name;
         CarportItems carportItems = null;
 
@@ -36,9 +48,13 @@ public class CarportCalc {
         return billOfMaterials;
     }
 
-    protected Result calcPost(double length, double width) {
+    protected Result calcPost(double length, double width) throws UserException {
 
-        double price = 105;
+        materials = materialFacade.getMaterialsById(26);
+
+        double postHeight = materials.getLength();
+
+        double price = materials.getPrice();
 
         int postAmount = 4;
 
@@ -64,9 +80,11 @@ public class CarportCalc {
         return result;
     }
 
-    protected Result calcRaft(double length, double width) {
+    protected Result calcRaft(double length, double width) throws UserException {
 
-        double price = 509;
+        materials = materialFacade.getMaterialsById(25);
+        double price = materials.getPrice();
+
         // spær er 600cm, 55cm. mellemrum mellem spær
 
         int rafterAmount = calcRaftLength(length).getAmount();
@@ -120,9 +138,10 @@ public class CarportCalc {
 
     }
 
-    public Result calcBeam(double length, double width) {
+    public Result calcBeam(double length, double width) throws UserException {
 
-        double price = 600;
+        materials = materialFacade.getMaterialsById(17);
+        double price = materials.getPrice();
 
         int beamAmount;
         beamAmount = calcBeamLength(length).getAmount() + calcBeamWidth(width).getAmount();

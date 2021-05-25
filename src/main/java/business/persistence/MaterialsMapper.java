@@ -2,7 +2,10 @@ package business.persistence;
 
 import business.entities.Carport;
 import business.entities.Materials;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 06ca048cea945ece7cf25d773b6e214095da148d
 import business.entities.User;
 import business.exceptions.UserException;
 
@@ -19,9 +22,9 @@ public class MaterialsMapper {
         this.database = database;
     }
 
- /*   public Materials getMaterialById(int materials_id) throws UserException {
+    public Materials getMaterialById(int materials_id) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql = "SELECT * FROM materials WHERE materials_id = ?";
+            String sql = "SELECT materials.materials_id, materials.name, materials.description, materials.price,sizes.sizes_id, sizes.height, sizes.length, sizes.width FROM materials INNER JOIN sizes on materials.sizes_id = sizes.sizes_id WHERE materials_id = ?";
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
@@ -31,9 +34,12 @@ public class MaterialsMapper {
 
                     String name = rs.getString("name");
                     int sizes_id = rs.getInt("sizes_id");
+                    double height = rs.getDouble("height");
+                    double length = rs.getDouble("length");
+                    double width = rs.getDouble("width");
                     String description = rs.getString("description");
                     double price = rs.getDouble("price");
-                    return new Materials(materials_id, name, sizes_id, description, price);
+                    return new Materials(materials_id, name, sizes_id, height, length, width, description, price);
                 }
                 throw new UserException("Materialet findes ikke for materiale_id = " + materials_id);
 
@@ -43,7 +49,7 @@ public class MaterialsMapper {
         } catch (SQLException ex) {
             throw new UserException("Connection to database could not be established");
         }
-    } */
+    }
 
     public List<Materials> getAllMaterials() throws UserException {
 
@@ -64,7 +70,7 @@ public class MaterialsMapper {
                     double width = rs.getDouble("width");
                     String description = rs.getString("description");
                     double price = rs.getDouble("price");
-                    materialsList.add(new Materials(materials_id, name, sizes_id, height,length,width, description, price));
+                    materialsList.add(new Materials(materials_id, name, sizes_id, height, length, width, description, price));
 
                 }
                 return materialsList;
@@ -76,7 +82,7 @@ public class MaterialsMapper {
         }
     }
 
-    public int deleteMaterial(int material_id) throws UserException {
+    public int deleteMaterial(Materials materials) throws UserException {
         int rowsAffected = 0;
         try (Connection connection = database.connect()) {
             String sql = "DELETE FROM materials " +
@@ -84,7 +90,7 @@ public class MaterialsMapper {
 
             while (rowsAffected == 0) {
                 try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                    ps.setInt(1, material_id);
+                    ps.setInt(1, materials.getMaterials_id());
                     rowsAffected = ps.executeUpdate();
 
                     if (rowsAffected == 0) {
@@ -94,6 +100,8 @@ public class MaterialsMapper {
                     throw new UserException(ex.getMessage());
                 }
             }
+
+            deleteSizes(materials.getSizes_id());
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -182,9 +190,36 @@ public class MaterialsMapper {
         return rowaAffected;
     }
 
+<<<<<<< HEAD
+=======
+// TODO: overvejer om den skal stå for sig selv eller sættes sammen med insertMaterial.
+  /*  public Materials insertSizes(Materials materials) throws UserException {
+
+        boolean result = false;
+
+        int newId = 0;
+        String sql = "insert into sizes (sizes_id, height, length, width) values (?,?,?,?)";
+        try (Connection connection = database.connect()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1, materials.getSizes_id());
+                ps.setDouble(2, materials.getHeight());
+                ps.setDouble(3, materials.getLength());
+                ps.setDouble(4, materials.getWidth());
+>>>>>>> 06ca048cea945ece7cf25d773b6e214095da148d
 
 
 
+<<<<<<< HEAD
+=======
+        return sizes;
+    }
+
+*/
+
+
+
+
+>>>>>>> 06ca048cea945ece7cf25d773b6e214095da148d
 
 
 }
