@@ -20,14 +20,31 @@
                 <th>name</th>
                 <th>length</th>
                 <th>amount</th>
+                <th>price</th>
                 </thead>
 
-                    <c:forEach var="carportItem" items="${applicationScope.billOfMaterials.billOfMaterialsItemList}">
+                <c:forEach var="carportItem" items="${applicationScope.billOfMaterials.billOfMaterialsItemList}">
                 <tr>
                     <td>${carportItem.name}</td>
                     <td>${carportItem.length}</td>
                     <td>${carportItem.amount}</td>
+                    <td>${carportItem.price}</td>
+                </tr>
                 </c:forEach>
+                <br></br>
+                <tr>
+
+                    <td>Total Price:</td>
+                    <td>${applicationScope.totalPrice},-</td>
+                    <td>sugested price:</td>
+                    <td>
+                        <input id="suggestedPrice" name="suggestedPrice" type="number"
+                               value="${applicationScope.totalPrice}">
+                        <label for="suggestedPrice"></label>
+
+                    </td>
+                </tr>
+
         </form>
 
 

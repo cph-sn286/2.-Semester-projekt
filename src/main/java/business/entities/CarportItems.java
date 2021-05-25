@@ -3,13 +3,15 @@ package business.entities;
 public class CarportItems {
 
     String name;
-    Double length;
+    double length;
     int amount;
+    double price;
 
-    public CarportItems(String name, Double length, int amount) {
+    public CarportItems(String name, Double length, int amount, double price) {
         this.name = name;
         this.length = length;
         this.amount = amount;
+        this.price = price;
     }
 
     public String getName() {
@@ -34,6 +36,14 @@ public class CarportItems {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override

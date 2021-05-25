@@ -18,6 +18,9 @@
                 <th>materials_id</th>
                 <th>name</th>
                 <th>sizes_id</th>
+                <th>height</th>
+                <th>length</th>
+                <th>width</th>
                 <th>description</th>
                 <th>price</th>
                 </thead>
@@ -27,6 +30,9 @@
                     <td>${materials.materials_id}</td>
                     <td>${materials.name}</td>
                     <td>${materials.sizes_id}</td>
+                    <td>${materials.height}</td>
+                    <td>${materials.length}</td>
+                    <td>${materials.width}</td>
                     <td>${materials.description}</td>
                     <td>${materials.price},-</td>
                     <td>
