@@ -16,6 +16,7 @@ public class MaterialsMapper {
     public MaterialsMapper(Database database) {
 
         this.database = database;
+
     }
 
     public Materials getMaterialById(int materials_id) throws UserException {
