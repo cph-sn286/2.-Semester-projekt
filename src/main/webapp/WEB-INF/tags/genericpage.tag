@@ -24,11 +24,9 @@
     -->
 <header class="d-flex flex-column flex-md-row align-items-center p-3 pb-0 px-md-4 mb-4 bg-white border-bottom shadow-sm">
     <div class="h5 my-0 me-md-auto fw-normal">
-<<<<<<< HEAD
+
         <p>Fog Carport</p>
-=======
-        <p>Fog carporte</p>
->>>>>>> svg
+
         <p style="font-size: larger">
             <jsp:invoke fragment="header"/>
         </p>
