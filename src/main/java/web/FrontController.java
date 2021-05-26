@@ -1,11 +1,15 @@
 package web;
 
+import business.entities.Materials;
 import business.exceptions.UserException;
 import business.persistence.Database;
+import business.services.MaterialFacade;
 import web.commands.*;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -17,14 +21,18 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "FrontController", urlPatterns = {"/fc/*"})
 public class FrontController extends HttpServlet
 {
-    private final static String USER = "dev";
-    private final static String PASSWORD = "ax2";
-    private final static String URL = "jdbc:mysql://localhost:3306/startcode?serverTimezone=CET";
+    private final static String USER = "fog";
+    private final static String PASSWORD = "fog";
+    private final static String URL = "jdbc:mysql://localhost:3306/fogdb?serverTimezone=CET";
 
     public static Database database;
 
+
     public void init() throws ServletException
     {
+
+        Locale.setDefault(new Locale("US"));
+
         // Initialize database connection
         if (database == null)
         {
@@ -39,6 +47,15 @@ public class FrontController extends HttpServlet
         }
 
         // Initialize whatever global datastructures needed here:
+        MaterialFacade materialFacade = new MaterialFacade(database);
+        try {
+            List<Materials>materialPriceList = materialFacade.getAllMaterials();
+            getServletContext().setAttribute("materialPriceList", materialPriceList);
+        } catch (UserException e) {
+            e.printStackTrace();
+        }
+
+
 
     }
 
