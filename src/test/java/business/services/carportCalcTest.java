@@ -3,16 +3,17 @@ package business.services;
 import business.entities.BillOfMaterials;
 import business.entities.Carport;
 import business.entities.Result;
+import business.exceptions.UserException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarportCalcTest {
-    CarportCalc carportCalc = new CarportCalc();
+    CarportCalc carportCalc = new CarportCalc(null);
 
 
     @Test
-    void calcPostLessThan300() {
+    void calcPostLessThan300() throws UserException {
         Result result = carportCalc.calcPost(240, 500);
 
         assertEquals(4, result.getAmount());
@@ -21,7 +22,7 @@ class CarportCalcTest {
     }
 
     @Test
-    void calcPostMoreThan300() {
+    void calcPostMoreThan300() throws UserException {
         Result result = carportCalc.calcPost(680, 500);
 
         assertEquals(8, result.getAmount());
@@ -30,7 +31,7 @@ class CarportCalcTest {
     }
 
     @Test
-    void calcPostExactly300() {
+    void calcPostExactly300() throws UserException {
         Result result = carportCalc.calcPost(300, 500);
 
         assertEquals(4, result.getAmount());
@@ -40,7 +41,7 @@ class CarportCalcTest {
 
     @Test
 
-    void calcRaftExactly240(){
+    void calcRaftExactly240()throws UserException{
         Result result = carportCalc.calcRaft(240, 500);
 
         assertEquals(5,result.getAmount());
@@ -50,7 +51,7 @@ class CarportCalcTest {
 
     @Test
 
-    void calcRaftLength390(){
+    void calcRaftLength390()throws UserException{
         Result result = carportCalc.calcRaft(390, 500);
 
         assertEquals(8,result.getAmount());
@@ -60,7 +61,7 @@ class CarportCalcTest {
 
     @Test
 
-    void calcRaftWidthOver600(){
+    void calcRaftWidthOver600()throws UserException{
         Result result = carportCalc.calcRaft(240,780);
 
         assertEquals(10,result.getAmount());
@@ -70,7 +71,7 @@ class CarportCalcTest {
 
     @Test
 
-    void calcRaftWidthExactly600(){
+    void calcRaftWidthExactly600()throws UserException{
         Result result = carportCalc.calcRaft(240,600);
 
         assertEquals(5,result.getAmount());
@@ -80,7 +81,7 @@ class CarportCalcTest {
 
     @Test
 
-    void calcBeam(){
+    void calcBeam()throws UserException{
         Result result = carportCalc.calcBeam(240,240);
 
         assertEquals(4,result.getAmount());
@@ -89,7 +90,7 @@ class CarportCalcTest {
     }
 
     @Test
-    void calcBeamWidth780(){
+    void calcBeamWidth780()throws UserException{
         Result result = carportCalc.calcBeam(240,780);
 
         assertEquals(6,result.getAmount());
@@ -99,7 +100,7 @@ class CarportCalcTest {
 
     @Test
 
-    void calcCarport(){
+    void calcCarport()throws UserException{
         BillOfMaterials billOfMaterials = carportCalc.calcCarport(240,780);
 
         System.out.println(billOfMaterials.getBillOfMaterialsItemList().toString());
