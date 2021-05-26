@@ -25,6 +25,8 @@
                 Du får svar indenfor 1-3 hverdage
             </div>
 
+            <a href="${pageContext.request.contextPath}/fc/showsvgpage">Gå til plantegning</a>
+
 
 
 
